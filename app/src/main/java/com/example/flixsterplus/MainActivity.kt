@@ -12,7 +12,7 @@ import com.example.flixsterplus.databinding.ActivityMainBinding
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import okhttp3.Headers
-import org.json.JSONException
+
 
 fun createJson() = Json {
     isLenient = true
@@ -60,14 +60,20 @@ class MainActivity : AppCompatActivity() {
             override fun onSuccess(statusCode: Int, headers: Headers?, json: JSON?) {
                 Log.i(TAG, "Successfully fetched movies: $json")
                 try {
-                    // Convert the JSON response to a raw JSON string
+                    // Check if the activity is finishing or destroyed before attempting UI updates
+                    if (isFinishing || isDestroyed) {
+                        Log.e(TAG, "Activity is finishing or destroyed. Skipping UI updates.")
+                        return
+                    }
+
+                    // Get the raw JSON string from the response
                     val jsonString = json?.toString()
                     if (jsonString == null) {
                         Log.e(TAG, "Failed to parse JSON, jsonString is null")
                         return
                     }
 
-                    // Log the raw JSON for debugging
+                    // Log the raw JSON for debugging purposes
                     Log.i(TAG, "Raw JSON: $jsonString")
 
                     // Use Kotlin Serialization to decode the JSON string into SearchNewsResponse
@@ -78,10 +84,11 @@ class MainActivity : AppCompatActivity() {
                         movies.addAll(list)
                         movieAdapter.notifyDataSetChanged()
                     }
-                } catch (e: JSONException) {
+                } catch (e: Exception) {
                     Log.e(TAG, "Exception while parsing JSON: $e")
                 }
             }
+
 
 
 
