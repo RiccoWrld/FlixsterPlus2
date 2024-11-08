@@ -2,7 +2,7 @@
 
 Submitted by: Ricardo Beale
 
-**FlixsterPlus2** is a movie browsing app that allows users to browse ... [TODO] 
+**FlixsterPlus2** is a movie browsing app that allows users to browse a variety of movies and click on the chosen movie for more information regarding it like popularity, release date, and overview. 
 
 Time spent: **48** hours spent in total
 
@@ -11,7 +11,7 @@ Time spent: **48** hours spent in total
 The following **required** functionality is completed:
 
 - [x] **Choose any endpoint on The MovieDB API except `now_playing`**
-  - Chosen Endpoint: `[TODO: FILL ME IN TO GET CREDIT]`
+  - Chosen Endpoint: `/discover/movie`
 - [x] **Make a request to your chosen endpoint and implement a RecyclerView to display all entries**
 - [x] **Use Glide to load and display at least one image per entry**
 - [x] **Click on an entry to view specific details about that entry using Intents**
