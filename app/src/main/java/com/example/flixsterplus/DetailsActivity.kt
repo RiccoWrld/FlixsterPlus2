@@ -1,6 +1,7 @@
 package com.example.flixsterplus
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -24,15 +25,31 @@ class DetailsActivity : AppCompatActivity() {
         popularTextView = findViewById(R.id.popularity)
         overviewTextView = findViewById(R.id.overview)
 
-        val movie = intent.getSerializableExtra(MOVIE_EXTRA) as Movie
+        val movie: Movie? = intent.getParcelableExtra(MOVIE_EXTRA)
 
-        releaseDateTextView.text = movie.release_date
-        popularTextView.text = movie.popularity
-        overviewTextView.text = movie.overview
+        if (movie != null) {
+            // Use the movie object
+            Log.d("AnotherActivity", "Movie title: ${movie.original_title}")
+        } else {
+            Log.d("AnotherActivity", "No movie data received")
+        }
 
-        Glide.with(this)
-            .load(movie.poster_path)
-            .into(posterPathImageView)
+
+        if (movie != null) {
+            releaseDateTextView.text = movie.release_date
+        }
+        if (movie != null) {
+            popularTextView.text = movie.popularity
+        }
+        if (movie != null) {
+            overviewTextView.text = movie.overview
+        }
+
+        if (movie != null) {
+            Glide.with(this)
+                .load(movie.poster_path)
+                .into(posterPathImageView)
+        }
 
     }
 }
