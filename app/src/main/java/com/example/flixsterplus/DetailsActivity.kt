@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 
-private const val TAG = "DetailActivity"
+private const val TAG = "DetailsActivity"
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -20,36 +20,33 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
+        // Initialize the views
         posterPathImageView = findViewById(R.id.poster_path)
         releaseDateTextView = findViewById(R.id.release_date)
         popularTextView = findViewById(R.id.popularity)
         overviewTextView = findViewById(R.id.overview)
 
+        // Retrieve the movie passed from the adapter
         val movie: Movie? = intent.getParcelableExtra(MOVIE_EXTRA)
 
+        // Check if the movie was passed correctly
         if (movie != null) {
-            // Use the movie object
-            Log.d("AnotherActivity", "Movie title: ${movie.original_title}")
-        } else {
-            Log.d("AnotherActivity", "No movie data received")
-        }
+            // Log movie details
+            Log.d(TAG, "Movie title: ${movie.original_title}")
 
+            // Populate the views with movie data
+            releaseDateTextView.text = movie.release_date ?: "N/A"
+            popularTextView.text = movie.popularity ?: "N/A"
+            overviewTextView.text = movie.overview ?: "No Overview Available"
 
-        if (movie != null) {
-            releaseDateTextView.text = movie.release_date
-        }
-        if (movie != null) {
-            popularTextView.text = movie.popularity
-        }
-        if (movie != null) {
-            overviewTextView.text = movie.overview
-        }
-
-        if (movie != null) {
+            // Load the poster image using Glide
+            val imageUrl = "https://image.tmdb.org/t/p/w500${movie.poster_path}"
             Glide.with(this)
-                .load(movie.poster_path)
+                .load(imageUrl)
                 .into(posterPathImageView)
+        } else {
+            Log.d(TAG, "No movie data received")
+            // Handle the case where no movie was passed (e.g., show a default image or message)
         }
-
     }
 }

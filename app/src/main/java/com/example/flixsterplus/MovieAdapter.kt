@@ -30,28 +30,31 @@ class MovieAdapter (private val context: Context, private val movies: List<Movie
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
             View.OnClickListener {
 
-                private val movieImageView = itemView.findViewById<ImageView>(R.id.poster_path)
-                private val movieTitle = itemView.findViewById<TextView>(R.id.original_title)
+        private val movieImageView = itemView.findViewById<ImageView>(R.id.poster_path)
+        private val movieTitle = itemView.findViewById<TextView>(R.id.original_title)
 
-                init {
-                    itemView.setOnClickListener(this)
-                }
+        init {
+            itemView.setOnClickListener(this)
+        }
 
-                override fun onClick(v: View) {
-                    val movie = movies[absoluteAdapterPosition]
+        override fun onClick(v: View) {
+            val movie = movies[absoluteAdapterPosition]
 
-                    val intent = Intent(context, DetailsActivity::class.java)
-                    intent.putExtra(MOVIE_EXTRA, movie)
-                    context.startActivity(intent)
-                }
 
-                fun bind(movie: Movie){
-                    movieTitle.text = movie.original_title
+            val intent = Intent(context, DetailsActivity::class.java).apply {
+                putExtra(MOVIE_EXTRA, movie)
+            }
+            context.startActivity(intent)
+        }
 
-                    Glide.with(context)
-                        .load(movie.poster_path)
-                        .into(movieImageView)
-                }
+        fun bind(movie: Movie) {
+            movieTitle.text = movie.original_title
+
+            Glide.with(context)
+                .load(movie.poster_path)
+                .into(movieImageView)
+        }
+
 
     }
 
