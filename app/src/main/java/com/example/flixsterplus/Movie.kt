@@ -1,5 +1,6 @@
 package com.example.flixsterplus
 
+
 import android.support.annotation.Keep
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -9,7 +10,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class SearchNewsResponse(
     @SerialName("results")
-    var results: List<Movie>
+    val results: List<Movie>
 )
 
 @Keep
