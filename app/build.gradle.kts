@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    kotlin("plugin.serialization") version "1.5.31"
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -54,8 +54,6 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.13.2")
     implementation ("com.google.code.gson:gson:2.9.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
-    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
-    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-core:1.5.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.13.2")
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.3")
