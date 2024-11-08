@@ -35,9 +35,9 @@ class DetailsActivity : AppCompatActivity() {
             Log.d(TAG, "Movie title: ${movie.original_title}")
 
             // Populate the views with movie data
-            releaseDateTextView.text = movie.release_date ?: "N/A"
-            popularTextView.text = movie.popularity ?: "N/A"
-            overviewTextView.text = movie.overview ?: "No Overview Available"
+            releaseDateTextView.text = "Release Date: " + movie.release_date
+            popularTextView.text = "Popularity: " + movie.popularity
+            overviewTextView.text = movie.overview
 
             // Load the poster image using Glide
             val imageUrl = "https://image.tmdb.org/t/p/w500${movie.poster_path}"

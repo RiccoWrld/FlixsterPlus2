@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     // Convert JSON to string
-                    val jsonString = json?.toString()
+                    val jsonString = json?.jsonObject?.toString()
 
 
                     // Log raw JSON for debugging purposes
