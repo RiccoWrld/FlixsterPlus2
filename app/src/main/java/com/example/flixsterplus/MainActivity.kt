@@ -65,10 +65,7 @@ class MainActivity : AppCompatActivity() {
 
                     // Convert JSON to string
                     val jsonString = json?.toString()
-                    if (jsonString == null) {
-                        Log.e(TAG, "Failed to parse JSON, jsonString is null")
-                        return
-                    }
+
 
                     // Log raw JSON for debugging purposes
                     Log.i(TAG, "Raw JSON: $jsonString")
